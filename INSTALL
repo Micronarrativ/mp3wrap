@@ -1,0 +1,24 @@
+Mp3Wrap - INSTALLING INFORMATIONS
+
+This is a source release. You will not find any binary here.
+To get your running mp3wrap you must compile sources.
+Follow this steps:
+
+- Go into mp3wrap directory and type (this will set up Makefile in order to compile):
+
+	./configure
+
+- Then to compile:
+
+	make
+
+- To install (you must be root):
+
+	make install
+
+- To uninstall (you must be root):
+
+	make uninstall
+
+If you have problems in compiling or you are not able to perform this
+operations, please report me.

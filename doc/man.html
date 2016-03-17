@@ -1,0 +1,181 @@
+<HTML><HEAD><TITLE>Manpage of MP3WRAP</TITLE>
+</HEAD><BODY>
+<H1>MP3WRAP</H1>
+Section: Misc. Reference Manual Pages (1)<BR><A HREF="#index">Index</A>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+mp3wrap --- Utility for mp3 wrapping
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<P>
+<P>
+
+<B>mp3wrap [options]  OUTPUTFILE  f1.mp3  f2.mp3  [f3.mp3]...</B>
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<P>
+
+<B>Mp3Wrap</B> is a free command-line utility,
+which wraps two or more mp3 files in one large playable file,
+without losing filename and ID3 informations. It's useful to make
+large files easy to download on internet and then easy to split again
+in few seconds. You can split original files
+using <B>mp3splt</B>: <A HREF="http://mp3splt.sourceforge.net">http://mp3splt.sourceforge.net</A>
+<P>
+Mp3Wrap will create a file named: OUTPUTFILE_MP3WRAP.mp3.
+It's important you don't remove the MP3WRAP string, because
+this will tell the split program Mp3Splt that the file is wrapped
+and can be splitted just with -w option.
+There is also the possibility to specify a custom extension to created file (such as
+"OUTPUTFILE - MP3WRAP - wrapped by me.mp3"). This can be done
+using config file (see below), just adding the line "EXT=my ext.mp3" into it.
+Note that your custom extension must contain MP3WRAP string anywhere, otherwise
+program will add it by itself.
+<P>
+Mp3Wrap will also add to the file a ID3v2 containing informations
+on how to split the file; you can change Title and Album tag but
+PLEASE DO NOT REMOVE THE COMMENT.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT><B>-a</B>         <DD>
+Add specified files to an existing Mp3Wrap file. Files are appended and the index is updated.
+<DT><B>-l</B>         <DD>
+List all files wrapped into a Mp3Wrap file. Doesn't extract anything
+<DT><B>-v</B>         <DD>
+Verbose mode. Mp3Wrap will display additional informations on process and, when using list option
+(-l) it will show many extra infos on wrapped files.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>CONFIGURATION FILE</H2>
+
+<P>
+
+For Linux version valid configuration files are:
+<DL COMPACT><DT><DD>
+<P>
+<B>~/.mp3wrap</B>
+
+(in home directory)
+<P>
+<B>.mp3wrap</B>
+
+(in the dir you are in that moment).
+</DL>
+
+<P>
+For WIN32 version:
+<DL COMPACT><DT><DD>
+<P>
+<B>PROG_DIR/mp3wrap.ini</B>
+
+(dir where mp3wrap.exe is)
+<P>
+<B>mp3wrap.ini</B>
+
+(in the dir you are in that moment).
+</DL>
+
+<P>
+
+<B>FILE FORMAT</B>
+
+<P>
+
+The file consists of key-value pairs in the form
+<DL COMPACT><DT><DD>
+<B>KEY=value</B>
+
+</DL>
+
+where
+<B>key</B>
+
+contains no whitespace and no equal signs.
+<B>value</B>
+
+will be all of the text after the equal sign until (but not including)
+the ending newline.  Beware of extra spaces at the end of the line!
+They will probably be interpreted as part of the option value.
+<P>
+Valid option keys are:
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>EXT<DD>
+The extension mp3wrap will append to created files.
+</DL>
+</DL>
+
+<P>
+
+Here is an example:
+<DL COMPACT><DT><DD>
+EXT=_MP3WRAP_wrapped by me.mp3
+<P>
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+<P>
+
+mp3wrap album.mp3 file1.mp3 file2.mp3 file3.mp3 file4.mp3
+<P>
+
+mp3wrap -v album.mp3 file*.mp3
+<P>
+
+mp3wrap -a album.mp3 file5.mp3 file6.mp3
+<P>
+
+mp3wrap -l album.mp3
+<P>
+
+mp3wrap -lv album.mp3
+<P>
+<A NAME="lbAH">&nbsp;</A>
+<H2>BUGS</H2>
+
+<P>
+
+Report any bugs you find to Author (see below). Advices and info requests are welcome.
+<A NAME="lbAI">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+<P>
+
+Matteo Trotta &lt;<A HREF="mailto:mtrotta@users.sourceforge.net">mtrotta@users.sourceforge.net</A>&gt;.
+<P>
+
+Permission is granted to copy, distribute and/or modify
+this document under the terms of the GNU General Public License.
+This can be found as COPYING in mp3wrap directory.
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">CONFIGURATION FILE</A><DD>
+<DT><A HREF="#lbAG">EXAMPLES</A><DD>
+<DT><A HREF="#lbAH">BUGS</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
+</DL>
+<BR>
+<A HREF="http://mp3wrap.sourceforge.net">Back to Mp3Wrap Homepage</A>
+<HR>
+This document was created by man2html
+using the manual pages.<BR>
+Time: 21:16:09 GMT, January 10, 2002
+</BODY>
+</HTML>

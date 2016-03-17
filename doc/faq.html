@@ -1,0 +1,153 @@
+<HTML>
+<TITLE>Mp3Wrap: FAQ</TITLE>
+<BODY>
+<P ALIGN=center>
+<FONT SIZE=6><B>Frequently Asked Questions</B></FONT>
+</P>
+<P align=left>
+<B>INDEX</B><BR>
+<UL>
+<LI><A HREF="#q1">1. How can I split a file created with Mp3Wrap?</A><BR>
+<LI><A HREF="#q2">2. How can I recognize a file created with Mp3Wrap?</A><BR>
+<LI><A HREF="#q3">3. How can I view what files are wrapped into an Mp3Wrap file?</A><BR>
+<LI><A HREF="#q4">4. How can I add other files to an existing Mp3Wrap archive?</A><BR>
+<LI><A HREF="#q5">5. Can I use * and '?' operators to indicate more files?</A><BR>
+<LI><A HREF="#q6">6. How many files can be wrapped into an Mp3Wrap archive?</A>
+<LI><A HREF="#q7">7. Can I wrap other non mp3 files inside an archive?</A><BR>
+<LI><A HREF="#q8">8. Can I use my own extension filename?</A><BR>
+<LI><A HREF="#q9">9. What happens if someone changes something of a wrapped file or it gets damaged?</A><BR>
+</UL>
+<A HREF="http://mp3wrap.sourceforge.net">Back to Mp3Wrap Homepage </A>
+<HR>
+<FONT SIZE=3>
+
+<A NAME="q1">
+<B>Q: How can I split a file created with Mp3Wrap?</B>
+<PRE>
+A: You have to use Mp3Splt. The only thing to do is to check <A HREF="http://mp3splt.sourceforge.net">http://mp3splt.sourceforge.net</A>
+   for the latest version of mp3splt, download it, and then launch the command:
+
+	mp3splt  -w  album_MP3WRAP.mp3
+
+</PRE>
+</A>
+<A NAME="q2">
+<B>Q: How can I recognize a file created with Mp3Wrap?</B>
+<PRE>
+A: It's very easy to recognize a file created with Mp3Wrap. You have to follow this steps:
+
+1) 	The first thing to do is to check if filename contains the string MP3WRAP.
+	A Mp3Wrap file should contain this string but I can't assure that if MP3WRAP
+	is not in filename, then file isn't a valid Mp3Wrap file; infact someone
+	can change the filename because a file named like album_MP3WRAP.mp3
+	isn't quite elegant (that is reasonable :).
+
+2) 	Secondly, a Mp3Wrap mp3 usually has an ID3v2 containing:
+
+	TRACK: Number of mp3 wrapped in the file
+	COMMENT: "This file is wrapped with Mp3Wrap. Get mp3splt, the free tool to split
+	original files at http://mp3splt.sourceforge. Please do not remove this comment."
+	ENCODED BY: version of Mp3Wrap used to create file
+
+3)	But someone (really malicious :) could have changed or removed this ID3v2!
+	Don't worry, an Mp3Wrap file will work even if someone add / change / remove
+	any ID3 tags, thus the best thing to do is to throw this file into mp3splt or
+	mp3Wrap and see what happens ;)
+
+</PRE>
+</A>
+<A NAME="q3">
+<B>Q: How can I view what files are wrapped into an Mp3Wrap file?</B>
+<PRE>
+A: You have only to launch mp3wrap or mp3splt with -l option:
+
+	mp3wrap  -l  album_MP3WRAP.mp3
+	mp3splt  -l  album_MP3WRAP.mp3
+
+and you will see the list of wrapped file without modifying it.
+
+</PRE>
+</A>
+<A NAME="q4">
+<B>Q: How can I add other files to an existing Mp3Wrap archive?</B>
+<PRE>
+A: You have to use the  -a  option, specifying the existing file after  -a and then all files to add:
+
+	mp3wrap  -a  album_MP3WRAP.mp3  file*
+
+</PRE>
+</A>
+<A NAME="q5">
+<B>Q: Can I use * and '?' operators to indicate more files?</B>
+<PRE>
+A: Sure! If you have many files with a similar name, you can use the * operator to tell mp3wrap
+   to take them all. For example if you have many files in the form:
+   File - 01 - Song1.mp3
+   FIle - 02 - Song2.mp3
+   File - 03 - Song3.mp3
+   ... and so on. You can use
+
+	mp3wrap  album.mp3  File*
+
+   Or if you want to wrap all files in one directory, just use:
+
+	mp3wrap album.mp3 *
+	mp3wrap album.mp3 *.* (Windows style)
+
+</PRE>
+</A>
+<A NAME="q6">
+<B>Q: How many files can be wrapped into an Mp3Wrap archive?</B>
+<PRE>
+A: The Max number of file you can put into one single archive is 255, which is enough.
+   If you need to wrap more file, just use more archives (that you can wrap if you want ;)
+
+</PRE>
+</A>
+<A NAME="q7">
+<B>Q: Can I wrap other NON-mp3 files inside an archive?</B>
+<PRE>
+A: Sure! You can include other NON-mp3 files such as: PlayLists, info files, cover images
+   You only have to follow this rules:
+   - If file is a text file (such as Playlist, info file..etc.) it's better to put it at beginning of
+     file (because player will discard it quickly).
+   - If file is binary (such as images) you should put it at the end of file, so that player will
+     find it only when it has finished playing and doesn't mistake them for mp3.
+So you can follow this example:
+
+	mp3wrap album_MP3WRAP.mp3 playlist.m3u textfile.nfo file*.mp3 image.jpg
+
+</PRE>
+</A>
+<A NAME="q8">
+<B>Q: Can Can I use my own extension filename?</B>
+<PRE>
+A: Yes. From version 0.5 you can use your custom extension.
+   You have to specify it in config file as:
+
+   EXT= MP3WRAP - wrapped by me.mp3
+
+  NOTE that your own extension MUST contain MP3WRAP string, otherwise program
+  will add it by itself.
+
+</PRE>
+</A>
+<A NAME="q9">
+<B>Q: What happens if someone changes something of a wrapped file or it gets damaged?</B>
+<PRE>
+A: It depends. If changes regard ID3s, both v1 and v2, it does not matter. Removing, adding
+and updating ID3 does not compromise mp3 data and wrap index (even if people should not
+modify the ID3, especially ID3v2 wich contains precious informations on how to split).
+Instead if someone changes mp3data or index, for example cutting some data or passing the
+wrapped file through programs like "mp3clean" (NEVER DO THAT!!), or  file gets damaged, 
+mp3splt will recognize that file has been changed and it will notice that.
+
+</PRE>
+</A>
+See <A HREF="man.html">HTML Man Page </A> or <A HREF="http://mp3splt.sourceforge.net"> Mp3Splt Homepage </A>for more details.
+</FONT>
+<HR>
+This document was written by M. Trotta - 8/2002
+</P>
+</BODY>
+</HTML>

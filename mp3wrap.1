@@ -1,0 +1,167 @@
+.\" This -*- nroff -*- file has been generated from
+.\" DocBook SGML with docbook-to-man on Debian GNU/Linux.
+...\"
+...\"	transcript compatibility for postscript use.
+...\"
+...\"	synopsis:  .P! <file.ps>
+...\"
+.de P!
+\\&.
+.fl			\" force out current output buffer
+\\!%PB
+\\!/showpage{}def
+...\" the following is from Ken Flowers -- it prevents dictionary overflows
+\\!/tempdict 200 dict def tempdict begin
+.fl			\" prolog
+.sy cat \\$1\" bring in postscript file
+...\" the following line matches the tempdict above
+\\!end % tempdict %
+\\!PE
+\\!.
+.sp \\$2u	\" move below the image
+..
+.de pF
+.ie     \\*(f1 .ds f1 \\n(.f
+.el .ie \\*(f2 .ds f2 \\n(.f
+.el .ie \\*(f3 .ds f3 \\n(.f
+.el .ie \\*(f4 .ds f4 \\n(.f
+.el .tm ? font overflow
+.ft \\$1
+..
+.de fP
+.ie     !\\*(f4 \{\
+.	ft \\*(f4
+.	ds f4\"
+'	br \}
+.el .ie !\\*(f3 \{\
+.	ft \\*(f3
+.	ds f3\"
+'	br \}
+.el .ie !\\*(f2 \{\
+.	ft \\*(f2
+.	ds f2\"
+'	br \}
+.el .ie !\\*(f1 \{\
+.	ft \\*(f1
+.	ds f1\"
+'	br \}
+.el .tm ? font underflow
+..
+.ds f1\"
+.ds f2\"
+.ds f3\"
+.ds f4\"
+'\" t
+.ta 8n 16n 24n 32n 40n 48n 56n 64n 72n
+.TH "MP3WRAP" "1"
+.SH "NAME"
+mp3wrap \(em Utility for mp3 wrapping
+.SH "SYNOPSIS"
+
+.PP
+\fBmp3wrap [options]  OUTPUTFILE  f1.mp3  f2.mp3  [f3.mp3]...\fP
+
+.SH "DESCRIPTION"
+.PP
+\fBMp3Wrap\fP is a free command-line utility,
+which wraps two or more mp3 files in one large playable file,
+without losing filename and ID3 informations. It's useful to make
+large files easy to download on internet and then easy to split again
+in few seconds. You can split original files
+using \fBmp3splt\fP: http://mp3splt.sourceforge.net
+.sp
+Mp3Wrap will create a file named: OUTPUTFILE_MP3WRAP.mp3.
+It's important you don't remove the MP3WRAP string, because
+this will tell the split program Mp3Splt that the file is wrapped
+and can be splitted just with -w option.
+There is also the possibility to specify a custom extension to created file (such as
+"OUTPUTFILE - MP3WRAP - wrapped by me.mp3"). This can be done
+using config file (see below), just adding the line "EXT=my ext.mp3" into it.
+Note that your custom extension must contain MP3WRAP string anywhere,
+otherwise program will add it by itself.
+.sp
+Mp3Wrap will also add to the file a ID3v2 containing informations
+on how to split the file; you can change Title and Album tags but
+PLEASE DO NOT REMOVE THE COMMENT.
+.SH "OPTIONS"
+.IP "\fB-a\fP         " 10
+Add specified files to an existing Mp3Wrap file. Files are appended and the index is updated.
+.IP "\fB-l\fP         " 10
+List all files wrapped into a Mp3Wrap file. Doesn't extract anything
+.IP "\fB-v\fP         " 10
+Verbose mode. Mp3Wrap will display additional informations on process and, when using list option
+(-l) it will show many extra infos on wrapped files.
+
+.SH "CONFIGURATION FILE"
+.PP
+For Linux version valid configuration files are:
+.RS
+.sp
+.B ~/.mp3wrap
+(in home directory)
+.sp
+.B .mp3wrap
+(in the dir you are in that moment).
+.RE
+.sp
+For WIN32 version:
+.RS
+.sp
+.B PROG_DIR/mp3wrap.ini
+(dir where mp3wrap.exe is)
+.sp
+.B mp3wrap.ini
+(in the dir you are in that moment).
+.RE
+.PP
+.B FILE FORMAT
+.PP
+The file consists of key-value pairs in the form
+.RS
+.BR
+.B KEY=value
+.RE
+where
+.B key
+contains no whitespace and no equal signs.
+.B value
+will be all of the text after the equal sign until (but not including)
+the ending newline.  Beware of extra spaces at the end of the line!
+They will probably be interpreted as part of the option value.
+
+Valid option keys are:
+.RS
+.IP EXT
+The extension mp3wrap will append to created files.
+.RE
+.PP
+Here is an example:
+.RS
+EXT=_MP3WRAP_wrapped by me.mp3
+
+.SH "EXAMPLES"
+.PP
+mp3wrap album.mp3 file1.mp3 file2.mp3 file3.mp3 file4.mp3
+.PP
+mp3wrap -v album.mp3 file*.mp3
+.PP
+mp3wrap -a album.mp3 file5.mp3 file6.mp3
+.PP
+mp3wrap -l album.mp3
+.PP
+mp3wrap -lv album.mp3
+
+.SH "BUGS"
+.PP
+Report any bugs you find to Author (see below). Advices and info requests are welcome.
+.SH "SEE ALSO"
+.PP
+\fBmp3splt\fP(1)
+.SH "AUTHOR"
+.PP
+Matteo Trotta <mtrotta@users.sourceforge.net>.
+.PP
+Permission is granted to copy, distribute and/or modify
+this document under the terms of the GNU General Public License.
+This can be found as COPYING in mp3wrap directory.
+...\" created by instant / docbook-to-man, Sun 17 Feb 2002, 11:18

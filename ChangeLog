@@ -1,0 +1,54 @@
+Check http://mp3wrap.sourceforge.net for latest release.
+
+--> GET mp3splt at: http://mp3splt.sourceforge.net  <--
+
+# Mp3Wrap v. 0.5
+
+Corresponding mp3splt: version 1.2 or higher
+
+- new important feature added: CRC introduced. Now wrapped files contain a CRC information to guarantee 
+  integrity of index and mp3data.
+- new feature added: Verbose option introduced. Now -l option gives only list of filenames, -lv complete infos.
+- new feature added: added a config file. User will write his customizations inside this file.
+- new feature added: extension can be specified in config file as "EXT=my extension.mp3"
+- feature improved: like mp3splt, now searches for index for 16384 bytes. This should be enough.
+- bug fixed: file existence error is now correct.
+- bug fixed: when an invalid option is specified, now program exits
+- now sources are separated by functions for easy mantainance.
+- added configure script to autodetect install and man directories for Linux version.
+
+# Mp3Wrap v. 0.4 Alpha
+
+- bug fixed: now directories are skipped even if they are not the last arg of command line (and argv is permuted)
+- other bug fixes and code optimizations
+
+# Mp3Wrap v. 0.3 Alpha
+
+- Now you can safely wrap subdirectories specifying their contents with dir/*. If this directory contains another
+  subdirectory and you do not specify it in command line, it will be discarded
+- Length of search for Wrapindex has been increased.
+
+# Mp3Wrap v. 0.2 Alpha
+
+Corresponding mp3splt: version 0.6 or higher
+
+- List option improved: more readable output with size 
+  and filename informations.
+- Number of wrapped files added in "Track" field of ID3v2
+- bug fixed: added check on max number of wrapable files
+- bug fixed: MP3WRAP string is not appended in output file
+  name if aleready specified by user. 
+
+# Mp3Wrap v. 0.1 Alpha
+
+  Mp3Wrap 0.1 is completely supported by Mp3Splt v. 0.6.
+
+- new feature added: add option. Now you can add files
+  to an existing Mp3Wrap file just using -a option
+- new feature added: list option. With -l option you can
+  now see what files are wrapped in an Mp3Wrap file.
+- bug fixed: added many check on INDEXVERSION for future uses.
+
+# Mp3Wrap v. 0.0 Alpha
+
+- first release
